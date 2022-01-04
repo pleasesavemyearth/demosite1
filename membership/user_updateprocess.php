@@ -1,8 +1,8 @@
 <!-- 
-  파일명 : oo_user_updateprocess.php
-  최초작업자 : swcodingschool
-  최초작성일자 : 2021-12-28
-  업데이트일자 : 2021-12-28
+  파일명 : user_updateprocess.php
+  최초작업자 : jihyeon
+  최초작성일자 : 2022-1-3
+  업데이트일자 : 2022-1-3
   
   기능: 
   oo_user_update.php 사용자 정보 수정 화면에서 입력된 값을 받아, 

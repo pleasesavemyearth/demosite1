@@ -1,3 +1,13 @@
+<!-- 
+  파일명 : user_regist.php
+  최초작업자 : jihyeon
+  최초작성일자 : 2022-1-3
+  업데이트일자 : 2022-1-3
+  
+  기능: 
+  회원가입 폼
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 

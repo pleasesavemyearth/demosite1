@@ -39,9 +39,10 @@ require_once './util/loginchk.php';
   <!-- -->
   <nav>
     <ul>
-      <li>navmenu 1</li>
       <li>navmenu1</li>
       <li>navmenu1</li>
+      <li>navmenu1</li>
+      <a href="../memo/memo_list.php">memo list</a>
       <?php
       if (!$chk_login) {  // 로그인 상태가 아니라면
       ?>

@@ -5,8 +5,7 @@
   업데이트일자 : 2022-1-3
   
   기능: 
-  user_regist.php 회원가입화면에서 입력된 값을 받아, validation 후
-  memo 테이블에 사용자 가입 데이터를 추가한다.
+  user_regist.php 회원가입화면에서 입력된 값을 받아, validation 후 memo 테이블에 사용자 가입 데이터를 추가한다.
 -->
 
 <?php
