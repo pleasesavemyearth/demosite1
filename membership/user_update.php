@@ -55,7 +55,7 @@ if ($result->num_rows > 0) {
     <br>
     <input type=submit value="저장">
   </form>
-  <a href="user_loginsuccess.php">목록보기</a>
+  <a href="user_userlist.php">목록보기</a>
 </body>
 <?php 
 }else {

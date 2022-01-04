@@ -12,7 +12,7 @@
 <?php
 // 프로젝트 시작 전 toyappname을 정한다.
 // 두번째 toy부터는 폴더의 이름으로 app의 이름을 정하도록 수정하였다.
-// 아래코드느느 다음의 의미를 가진다. 
+// 아래코드는 다음의 의미를 가진다. 
 // substr("/currentfolername",1)  /를 제외한 currentfoldername을 얻는다.
 //=======================================================
 //$toyappname = substr(dirname($_SERVER['PHP_SELF']), 1);
