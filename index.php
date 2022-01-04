@@ -39,7 +39,7 @@ require_once './util/loginchk.php';
   <!-- -->
   <nav>
     <ul>
-      <li>navmenu1</li>
+      <li>navmenu 1</li>
       <li>navmenu1</li>
       <li>navmenu1</li>
       <?php
