@@ -10,7 +10,7 @@
 
 <?php
 // db연결
-require "../util/dbconfig.php"
+require "../util/dbconfig.php";
 ?>
 
 <!DOCTYPE html>
