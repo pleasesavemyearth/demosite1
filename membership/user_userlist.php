@@ -30,7 +30,6 @@ if($chk_login){
 <body>
   <h6>로그인 성공!!</h6>
   <h1>사용자 목록</h1>
-  <br><br>
   <?php
   $sql = "SELECT * FROM users";
   $resultset = $conn->query($sql);

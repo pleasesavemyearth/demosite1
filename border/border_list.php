@@ -21,10 +21,12 @@ if($chk_login) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>게시판 글 목록</title>
 </head>
 <body>
-   
+
+   <div class="board_area">
     <h1>게시판</h1>
             <?php
                 $sql = "SELECT * FROM border";
@@ -58,6 +60,8 @@ if($chk_login) {
         <input type="button" value="글쓰기" onclick="location.href='./border_regist.php'"/> 
         <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
         <input type="button" value="로그아웃" onclick="location.href='../membership/user_logout.php'"/> 
+   </div>
+
 </body>
 <?php
 } else { // 로그인을 하지 않았을 시

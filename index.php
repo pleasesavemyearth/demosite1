@@ -45,9 +45,11 @@ require_once './util/loginchk.php';
       <a href="../memo/memo_list.php">memo list</a><br>
       <a href="../membership/user_userlist.php">user list</a><br>
       <a href="../border/border_list.php">border</a><br>
+
       <?php
       if (!$chk_login) {  // 로그인 상태가 아니라면
       ?>
+
         <li id='trglgnModal'>login</li>
         <!-- login modal -->
         <div id='lgnModal' class='modal'>
@@ -63,12 +65,14 @@ require_once './util/loginchk.php';
             </form>
           </div>
         </div>
+
       <?php } else {
         echo $_SESSION['username']; ?>
         <button?><a href="./membership/user_logout.php">logout</a></button>
         <?php
       }
         ?>
+        
     </ul>
   </nav>
   <!-- -->
