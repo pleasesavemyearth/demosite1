@@ -78,15 +78,14 @@ $conn->close();
 // 등록 과정 중 오류가 발생하였으면 앞서.. 오류 내용 메시지를 확인하고
 // 등록 화면으로 다시 돌아간다.
 if ($regist_err) {
-  // header('Location: user_regist.php');
+  // header('Location: ./user_regist.php');
   echo "<a href='./user_regist.php'>Confirm and Return to registform.</a>";
 } else {
   // 그렇지 않으면
   // 프로세스 플로우를 인덱스 페이지로 돌려준다.
-  // header('Location: index.php');
-  // 작업 실행 단계별 메시지 확인을 위해 Confrim and return to back하도록 수정함!!
-  // 백그라운드로 처리되도록 할 경우 위의 원 코드로 대체 할 것!!
   echo outmsg(COMMIT_CODE);
-  echo "<a href='../index.php'>Confirm and Return to index.</a>";
+  header('Location: ../index.php');
+  // echo "<a href='../index.php'>Confirm and Return to index.</a>";
+  // header를 쓰면 outmsg가 안뜨나 ?
 }
 ?>

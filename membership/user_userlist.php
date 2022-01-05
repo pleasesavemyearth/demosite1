@@ -44,7 +44,7 @@ if($chk_login){
     echo "</table>";
   }
   ?>
-  <a href="../index.php">인덱스페이지로</a>
+  <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
 </body>
 <?php 
 }else {

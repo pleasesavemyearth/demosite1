@@ -5,7 +5,7 @@
   업데이트일자 : 2022-1-5
   
   기능: 
-  membership 앱의 사용자 등록을 위한 users 테이블을 생성한다.
+  border 앱의 게시글 등록을 위한 border 테이블을 생성한다.
   이 코드는 납품시 최초 1 회 실행하며, 현재 버전은 백업에 대한 고려는 하지 않았다.
 -->
 
@@ -22,8 +22,9 @@ if ($conn->query($sql) == TRUE) {
 // 테이블을 생성한다.
 $sql = "CREATE TABLE `border` (
      `id` INT(6) NOT NULL AUTO_INCREMENT , 
-     `username` VARCHAR(20) NOT NULL COMMENT 'username' , 
-     `contents` TEXT NOT NULL COMMENT 'memo contents' ,
+     `username` VARCHAR(20) NOT NULL COMMENT 'username' ,
+     `title` VARCHAR(50) NOT NULL COMMENT 'border title' ,
+     `contents` TEXT NOT NULL COMMENT 'border contents' ,
      `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      `hit` INT(10) NOT NULL COMMENT 'hit' ,

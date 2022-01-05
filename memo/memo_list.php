@@ -56,6 +56,7 @@ if($chk_login) {
             
         <br>
         <input type="button" value="글쓰기" onclick="location.href='./memo_regist.php'"/> 
+        <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
         <input type="button" value="로그아웃" onclick="location.href='../membership/user_logout.php'"/> 
 
 </body>
