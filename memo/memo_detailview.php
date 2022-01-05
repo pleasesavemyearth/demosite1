@@ -58,8 +58,7 @@ if($chk_login){
     }
     ?>
     <br>
-    <!-- <input type="button" value="수정" onclick="location.href='./memo_update.php?id=<?=$id?>'"/> -->
-    <a href="./memo_update.php?id=<?=$id?>">수정</a>
+    <input type="button" value="수정" onclick="location.href='./memo_update.php?id=<?=$id?>'"/>
     <input type="button" value="삭제" onclick="location.href='./memo_deleteprocess.php?id=<?=$row['id']?>'"/>
     <input type="button" value="목록" onclick="location.href='./memo_list.php'"/>
 

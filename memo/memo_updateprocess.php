@@ -16,10 +16,6 @@
   $title = $_POST['title'];
   $contents = $_POST['contents'];
   $regtime = $_POST['regtime'];
-
-  echo outmsg($id);
-  echo outmsg($title);
-  echo outmsg($contents);
   
   $stmt = $conn->prepare("UPDATE memo SET title = ?, contents = ? WHERE id = ?" );
   $stmt->bind_param("sss", $title, $contents, $id);
@@ -27,7 +23,7 @@
 
   $conn->close();
    
-  echo "*********";
+  header('Location: memo_detailview.php?id='.$id);
   
 ?>
 

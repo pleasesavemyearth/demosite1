@@ -36,11 +36,8 @@ if ($result->num_rows > 0) {
     <title>Document</title>
 </head>
 <body>
-    <form> 
-    <?=$id?>
+    <form action="memo_updateprocess.php" method="POST">
     <h1>메모 수정</h1>
-    
-    <form action="memo_updateprocess.php" method="POST" >
       <input type="hidden" name="id" value="<?=$id?>">
       <label>글쓴이</label><input type="text" name="username" value="<?=$username?>" readonly ><br>
       <label>제목</label><input type="text" name="title" value="<?=$title?>"><br>
@@ -48,14 +45,15 @@ if ($result->num_rows > 0) {
       <label>작성일</label><input type="text" name="regtime" value="<?=$regtime?>" readonly><br>
       <label>수정일</label><input type="text" name="lasttime" value="<?=$lasttime?>" readonly><br>
       <input type="submit" value="수정">
-      <!-- <input type="button" value="목록" onclick="location.href='./memo_list.php'"/> -->
+      <input type="button" value="목록" onclick="location.href='./memo_detailview.php?id=<?=$id?>'"/>
     </form>
 </body>
 </html>
 
 <!-- 
-     
     1. readonly 란? 읽기만 가능하게 설정
     2. form내에 input type=submit은 action의 url로 작동 ?
     3. ★★★ detaileview에서 수정으로 넘어갈때 id값 넘겨주고 있는지 확인해야 함. 주소를 ~~.php?id=변수값
+    4. ★★★★★ form action위에 또 form 태그를 열어놔서 안에서만 돌고 수정이 반영되지 않았었음 형식 오타 항상
+    5. 취소 누를시 해당 글의 글 보기로 가야 하므로 href에 ~~.php?id=변수 까먹지 말기
 -->
