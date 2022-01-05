@@ -37,22 +37,24 @@ if ($result->num_rows > 0) {
 </head>
 <body>
     <form> 
-    <h1>****메모 수정***</h1>
-    <form action="./memo_updateprocess.php" method="POST">
-    <input type="hidden" name="id" value="<?= $id ?>"/>
-    글*쓴이<input type="text" name="username" value="<?= $username ?>" readonly><br>
-    제목<input type="text" name="title" value="<?= $title ?>"><br>
-    내용<input type="text" name="contents" value="<?= $contents ?>"><br>
-    작성일<input type="text" name="regtime" value="<?= $regtime ?>" readonly><br>
-    수정일<input type="text" name="lasttime" value="<?= $lasttime ?>" readonly><br>
-
-    <input type="submit" value="수정">
-    <input type="button" value="목록" onclick="location.href='./memo_list.php'"/>
+    <?=$id?>
+    <h1>메모 수정</h1>
+    
+    <form action="memo_updateprocess.php" method="POST" >
+      <input type="hidden" name="id" value="<?=$id?>">
+      <label>글쓴이</label><input type="text" name="username" value="<?=$username?>" readonly ><br>
+      <label>제목</label><input type="text" name="title" value="<?=$title?>"><br>
+      <label>내용</label><input type="text" name="contents" value="<?=$contents?>"><br>
+      <label>작성일</label><input type="text" name="regtime" value="<?=$regtime?>" readonly><br>
+      <label>수정일</label><input type="text" name="lasttime" value="<?=$lasttime?>" readonly><br>
+      <input type="submit" value="수정">
+      <!-- <input type="button" value="목록" onclick="location.href='./memo_list.php'"/> -->
     </form>
 </body>
 </html>
 
 <!-- 
+     
     1. readonly 란? 읽기만 가능하게 설정
     2. form내에 input type=submit은 action의 url로 작동 ?
     3. ★★★ detaileview에서 수정으로 넘어갈때 id값 넘겨주고 있는지 확인해야 함. 주소를 ~~.php?id=변수값
