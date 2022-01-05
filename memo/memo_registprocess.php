@@ -10,25 +10,31 @@
 
 <?php
 require "../util/dbconfig.php";
+require_once "../util/loginchk.php";
+
+if($chk_login){
 
 // 메모 작성 화면으로 부터 값을 전달 받음
-//$username = $_POST['username'];
+$username = $_SESSION['username'];
 $title = $_POST['title'];
 $contents = $_POST['contents'];
 
 // db에 삽입 
-$stmt = $conn->prepare("INSERT INTO memo (title, contents) VALUES (?, ?)");  
-$stmt->bind_param("ss", $title, $contents);
+$stmt = $conn->prepare("INSERT INTO memo (username, title, contents) VALUES (?, ?, ?)");  
+$stmt->bind_param("sss", $username, $title, $contents);
 $stmt->execute();
 
 // db 연결 리소스 반납
 $conn->close();
 
 echo outmsg(COMMIT_CODE);
-echo "<a href='./memo_list.php'>메모 목록 페이지로</a>";
-// header('Location: memo_list.php');
-
-/* 문제1
+//echo "<a href='./memo_list.php'>메모 목록 페이지로</a>";
+header('Location: memo_list.php');
+} else {
+  echo outmsg(LOGIN_NEED);
+  echo "<a href='../index.php'>인덱스페이지로</a>";
+}
+/* 
 1. table의 레코드 이름과 소스파일의 input의 name값 한글자만 틀려도 바로 에러가 나는 것을 알수 있었음
 2. 글이 두번째 부턴 db에 등록되지 않음. : username에 유니크줘서 그럼
 */

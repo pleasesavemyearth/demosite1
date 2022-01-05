@@ -42,7 +42,8 @@ require_once './util/loginchk.php';
       <li>navmenu1</li>
       <li>navmenu1</li>
       <li>navmenu1</li>
-      <a href="../memo/memo_list.php">memo list</a>
+      <a href="../memo/memo_list.php">memo list</a><br>
+      <a href="../membership/user_userlist.php">user list</a><br>
       <?php
       if (!$chk_login) {  // 로그인 상태가 아니라면
       ?>

@@ -45,8 +45,8 @@ if (!empty($row['username'])) {
   $_SESSION['userip']=$userip;
   // 여기까지 로그인 성공시 세션관리를 위한 추가 코드
   $conn->close();
-  //header('Location: user_list.php');
-  echo "<a href='./user_userlist.php'>목록보기</a>"; // 같은폴더내에 있으니까 ./
+  header('Location: ../index.php');
+  //echo "<a href='./user_userlist.php'>목록보기</a>"; // 같은폴더내에 있으니까 ./
 } else {
   echo outmsg(LOGIN_FAIL);
   $conn->close();

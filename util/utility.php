@@ -88,4 +88,7 @@ function get_client_ip() {
       $ipaddress = 'UNKNOWN';
   return $ipaddress;
 }
+
+// 게시글 번호가 잘못되었음을 출력
+const INVALID_MEMOID = '게시글 번호가 잘못되었습니다.';
 ?>
