@@ -28,7 +28,7 @@ if ($conn->query($sql) == TRUE) {
 // $sql = "CREATE TABLE `toymembership`.`users` (
 $sql = "CREATE TABLE `users` (
      `id` INT(6) NOT NULL AUTO_INCREMENT , 
-     `username` VARCHAR(20) UNIQUE NOT NULL COMMENT 'user account' , 
+     `username` VARCHAR(20) NOT NULL COMMENT 'user account' , 
      `passwd` VARCHAR(256) NOT NULL COMMENT 'user password' , 
      `cellphone` VARCHAR(13) NOT NULL COMMENT 'phone number' , 
      `email` VARCHAR(50) NOT NULL COMMENT 'mail address' , 
@@ -52,5 +52,5 @@ $conn->close();
 // header('Location: index.php');
 // 작업 실행 단계별 메시지 확인을 위해 Confrim and return to back하도록 수정함!!
 // 백그라운드로 처리되도록 할 경우 위 코드로 대체 할 것!!
-echo "<a href='../memo/app_initiate.php'>Confirm and Return to back</a>";
+echo "<a href='../memo/app_initiate.php'>membership 테이블을 생성했습니다. 클릭하면 memo 테이블을 생성합니다.</a>";
 ?>
