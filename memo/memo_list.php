@@ -38,7 +38,7 @@ require '../util/dbconfig.php';
                     while($row = $resultset->fetch_assoc()) {
                         echo "<tr>
                                 <td>".$row['id']."</td>
-                                <td><a href='./memo_form.php'>".$row['title']."</a></td>
+                                <td><a href='./memo_detailview.php'>".$row['title']."</a></td>
                                 <td>".$row['username']."</td>
                                 <td>".$row['regtime']."</td>
                               </tr>";

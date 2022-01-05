@@ -27,7 +27,7 @@ if ($conn->query($sql) == TRUE) {
 // 테이블 생성시 데이터베이스 이름을 붙이는 부분을 생략함!!
 $sql = " CREATE TABLE `memo`(
   `id` INT(6) NOT NULL AUTO_INCREMENT ,
-  `username` VARCHAR(20) UNIQUE NOT NULL COMMENT 'username' , 
+  `username` VARCHAR(20) NOT NULL COMMENT 'username' , 
   `title` VARCHAR(50) NOT NULL COMMENT 'memo title' ,
   `contents` TEXT NOT NULL COMMENT 'memo contents' ,
   `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
