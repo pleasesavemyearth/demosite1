@@ -21,6 +21,7 @@ if($chk_login) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="../css/style.css">
     <title>게시판 글 목록</title>
 </head>
 <body>
@@ -38,7 +39,7 @@ if($chk_login) {
                 }
 
                 // 2. 페이지 당 보여줄 리스트 갯수값 설정
-                $total_records_per_page = 5;
+                $total_records_per_page = 10;
 
                 // 3. offset계산, 이전/다음페이지 변수 설정
                 $offset = ($page_no - 1) * $total_records_per_page;
@@ -51,7 +52,7 @@ if($chk_login) {
                 $result = mysqli_fetch_array($resultset);
                 $total_records = $result['total_records'];
                 $total_no_of_pages = ceil($total_records / $total_records_per_page);
-                $second_last = $total_no_of_pages - 1; // ?
+                $second_last = $total_no_of_pages - 1; 
                 //========================================
 
                 // $sql = "SELECT * FROM border"; 
@@ -118,11 +119,11 @@ if($chk_login) {
                     echo "class='disabled'";} ?>>
                 <!-- 현재페이지가 총페이지보다 작으면 -->
                 <a <?php if($page_no < $total_no_of_pages){
-                    echo "href='?page_no=$next_page'";} ?>>다음</a>
+                    echo "href='?page_no=$next_page'";} ?>>다음페이지</a>
                 </li>
                 
                 <?php if($page_no < $total_no_of_pages){
-                    echo "<li><a href='?page_no=$total_no_of_pages'>마지막 &rsaquo;&rsaquo;</a></li>";} 
+                    echo "<li><a href='?page_no=$total_no_of_pages'>마지막페이지</a></li>";} 
                 ?>
                 </ul>
 
@@ -130,11 +131,14 @@ if($chk_login) {
                 //=================================================
             ?>
 
-        <br>
+        <br><br>
         <input type="button" value="글쓰기" onclick="location.href='./border_regist.php'"/> 
         <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
         <input type="button" value="로그아웃" onclick="location.href='../membership/user_logout.php'"/> 
-   </div>
+
+
+        
+        </div>
 
 </body>
 <?php

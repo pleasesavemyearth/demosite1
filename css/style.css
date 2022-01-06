@@ -1,9 +1,43 @@
-/* 전체 적용인데 안되는데 ? */
 * {
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+/* pagination 꾸미기 */
+/* pagination 이나 ul 이나 li에 적용되는 차이점 : border넣어서 확인 */
+/* Pagination list item */
+.pagination a {
+  padding: 5px 10px;
+  transition: background-color .5s;
+}
+
+.pagination li{
+  color: black;
+  float: left;
+  list-style: none;
+  /* border: 1px solid pink; */
+}
+
+.pagination a:hover:not(.active) {
+  background-color: gainsboro;
+}
+
+/* link: 방문 전, visited: 방문 후, hover: 마우스오버시 active: 클릭시 */
+.pagination a:link, 
+.pagination a:visited, 
+.pagination a:hover {
+  color: black;
+  text-decoration: none !important;
+}
+
+/* title hover시, underline이 나타나도록 */
+.board_area a:hover {
+  text-decoration: underline;
+}
+
+
+
 
 /* The Modal (background) */
 .modal {
