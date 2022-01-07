@@ -6,12 +6,13 @@
 
 /* pagination 꾸미기 */
 /* pagination 이나 ul 이나 li에 적용되는 차이점 : border넣어서 확인 */
-/* Pagination list item */
+/* Pagination anchor tag */
 .pagination a {
   padding: 5px 10px;
   transition: background-color .5s;
 }
 
+/* pagination list item */
 .pagination li{
   color: black;
   float: left;
@@ -19,8 +20,11 @@
   /* border: 1px solid pink; */
 }
 
+/* if not click pagination */
 .pagination a:hover:not(.active) {
-  background-color: gainsboro;
+  background-color: rgb(240, 240, 240);
+  border : 1px solid rgb(172, 172, 172);
+  border-radius: 3px;
 }
 
 /* link: 방문 전, visited: 방문 후, hover: 마우스오버시 active: 클릭시 */
@@ -32,12 +36,14 @@
 }
 
 /* title hover시, underline이 나타나도록 */
+.board_area a {
+  text-decoration: none;
+  color: black;
+}
+
 .board_area a:hover {
   text-decoration: underline;
 }
-
-
-
 
 /* The Modal (background) */
 .modal {

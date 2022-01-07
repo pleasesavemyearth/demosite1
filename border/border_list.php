@@ -130,7 +130,7 @@ if($chk_login) {
                 <?php // 여기까지 pagination을 위해 추가 부분
                 //=================================================
             ?>
-
+</div>
         <br><br>
         <input type="button" value="글쓰기" onclick="location.href='./border_regist.php'"/> 
         <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
@@ -138,7 +138,7 @@ if($chk_login) {
 
 
         
-        </div>
+        
 
 </body>
 <?php
