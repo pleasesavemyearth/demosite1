@@ -23,7 +23,6 @@
 /* if not click pagination */
 .pagination a:hover:not(.active) {
   background-color: rgb(240, 240, 240);
-  border : 1px solid rgb(172, 172, 172);
   border-radius: 3px;
 }
 
@@ -33,6 +32,11 @@
 .pagination a:hover {
   color: black;
   text-decoration: none !important;
+}
+
+/* pagination 클릭 시 색상이 유지되도록 */
+.pagination a:active {
+  /* color: red; */
 }
 
 /* title hover시, underline이 나타나도록 */

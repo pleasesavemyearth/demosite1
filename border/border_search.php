@@ -1,11 +1,11 @@
 <!-- 
-  파일명 : border_list.php
+  파일명 : border_search.php
   최초작업자 : jihyeon
-  최초작성일자 : 2022-1-5
-  업데이트일자 : 2022-1-5
+  최초작성일자 : 2022-1-10
+  업데이트일자 : 2022-1-10
   
   기능: 
-  db에 저장된 border 데이터를 받아와 게시글 리스트 형태로 나열한다.
+  border게시글에서 검색에 따른 조건에 맞은 결과를 db에 저장된 border 데이터를 불러와 게시글 리스트 형태로 나열한다.
 -->
 
 <?php
@@ -27,7 +27,7 @@ if($chk_login) {
 <body>
     <h6><?=$username?>님이 로그인하셨습니다.</h6>
    <div class="board_area">
-    <h1>게시판</h1>
+    <h1>게시글 검색결과</h1>
 
             <?php
                 // pagination용 추가====================
@@ -38,8 +38,23 @@ if($chk_login) {
                     $page_no = 1;
                 }
 
-                // 2. 페이지 당 보여줄 리스트 갯수값 설정
-                $total_records_per_page = 5;
+                // search용 추가========================
+                // 검색변수 (추가)
+                $category = $_GET['category']; 
+                $search = $_GET['search']; 
+                
+                // form의 title, contents, username 값을 제목, 내용, 글쓴이로 변경하기 위한 조건문 (추가)
+                // if($category == 'title') {
+                //     $keyword = '제목';
+                // } else if ($category == 'contents') {
+                //     $keyword = '내용';
+                // } else {
+                //     $keyword = '글쓴이';
+                // }
+
+                // 2. 검색된 리스트 갯수값 (수정)
+                $sql = "SELECT * FROM border WHERE $category LIKE '%$search%' ORDER BY id DESC";
+                $total_records_per_page = ($sql);
 
                 // 3. offset계산, 이전/다음페이지 변수 설정
                 $offset = ($page_no - 1) * $total_records_per_page;
@@ -54,10 +69,10 @@ if($chk_login) {
                 $total_no_of_pages = ceil($total_records / $total_records_per_page);
                 $second_last = $total_no_of_pages - 1; 
                 //=======================================
-
                 // $sql = "SELECT * FROM border"; 
                 // ★★★아래 sql구문에서 LIMIT 다음에 꼭 공백 있어야 함, LIMIT과 offset이 붙어버리면 숫자가 붙기 때문에 잘못된 질의문★★★
-                $sql = "SELECT * FROM border LIMIT ".$offset.",".$total_records_per_page;
+                // search용 수정
+                $sql = "SELECT * FROM border WHERE $category LIKE '%$search%' ORDER BY id DESC LIMIT ".$offset.",".$total_records_per_page;
                 $resultset = $conn -> query($sql);
 
                 if($resultset->num_rows > 0) {
@@ -165,12 +180,3 @@ if($chk_login) {
 }
 ?>
 </html>
-<!-- 
-    문제 :
-    1. search 안됨.
-    
-    로직 :
-     1. 게시글 검색바를 form태그로 구성, post방식으로 border_search.php로 정보를 보낸다.
-        제목, 내용, 글쓴이로 검색할 수 있게하고 검색 버튼을 누르면 해당 선택한 select에 따라 값이 전송 
-    2. 
- -->

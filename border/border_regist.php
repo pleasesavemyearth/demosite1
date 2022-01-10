@@ -32,6 +32,8 @@ if($chk_login) {
     내용<br>
     <input type="text" name="contents" required/><br>
 
+    <input type="file" name="image" /><br><br>
+
     <input type="submit" value="등록"/>
     <input type="reset"/> 
     <input type="button" value="목록" onclick="location.href='./border_list.php'"/>
@@ -45,3 +47,9 @@ if($chk_login) {
   }
 ?>
 </html>
+<!-- 
+  img db에 업로드 하는 방법
+  1. type이 file인 input태그 추가
+  2. db에서 image라는 column 추가(data type: varchar(100))
+  3. 
+-->

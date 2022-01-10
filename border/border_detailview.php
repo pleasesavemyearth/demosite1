@@ -33,6 +33,10 @@ if($chk_login){
      $sql = "SELECT * FROM border WHERE id= ".$id; 
      $resultset = $conn -> query($sql);
 
+     /* hit update */
+     $hit = "UPDATE border SET hit = hit+1 WHERE id=".$id;
+     $conn -> query($hit);
+
      if($resultset->num_rows > 0) {
         echo "<table>
               <tr>
@@ -58,7 +62,15 @@ if($chk_login){
                   </tr>";
             echo "</table>";
     }
-    ?>
+    
+    // db에 등록된 img 글읽기 시 나타내기
+    // if(!$row['image']) {
+
+    // } else{
+    //   echo "<img src='image/$row[image]'></img>"; 
+    // }
+    // ?>
+
     <br>
     <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>
     <input type="button" value="삭제" onclick="location.href='./border_deleteprocess.php?id=<?=$row['id']?>'"/>
@@ -72,3 +84,7 @@ if($chk_login){
 }
 ?>
 </html>
+
+<!--
+  db에 등록된 img 글읽기 시 나타내도록 수정
+-->
