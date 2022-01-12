@@ -21,7 +21,7 @@ $upload_path = './uploadfiles/';
 $sql = "DELETE FROM border WHERE id=" .$id;
 $resultset = $conn->query($sql);
 $row = $resultset->fetch_assoc();
-$existingfile = $row['uploadfile'];
+$existingfile = $row['image'];
 if(isset($existingfile) && $existingfile != ""){
   unlink($upload_path.$existingfile); // unlink function remove existing file
 }
