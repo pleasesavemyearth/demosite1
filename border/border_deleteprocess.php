@@ -18,15 +18,15 @@ $id = $_GET['id'];
 
 $upload_path = './uploadfiles/';
 
-$sql = "DELETE FROM border WHERE id=" .$id;
+$sql = "SELECT * FROM border WHERE id=".$id;
 $resultset = $conn->query($sql);
 $row = $resultset->fetch_assoc();
-$existingfile = $row['image'];
+$existingfile = $row['uploadfile'];
 if(isset($existingfile) && $existingfile != ""){
   unlink($upload_path.$existingfile); // unlink function remove existing file
 }
 
-$sql = "DELETE FROM border WHERE id=" . $id;
+$sql = "DELETE FROM border WHERE id=".$id;
 if ($conn->query($sql) == TRUE) {
     echo outmsg(DELETE_SUCCESS);
   } else {

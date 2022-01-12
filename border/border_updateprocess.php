@@ -22,22 +22,23 @@
     $regtime = $_POST['regtime'];
 
   // filename변수에 $_FILES함수로 post로 받아온 파일(image)를 가져오고 ['name']으로 파일명 바꿈
-  $filename = $_FILES['image']['name'];
+  $filename = $_FILES['uploadfile']['name'];
   // 파일 중복 회피
-  $filename = time()."_".$_FILES['image']['name'];
+  $filename = time()."_".$_FILES['uploadfile']['name'];
   // file이 정상적으로 업로드 되었을 때 테이블에 추가
-  if(move_uploaded_file($_FILES['image']['tmp_name'], $upload_path.$filename)){
+  if(move_uploaded_file($_FILES['uploadfile']['tmp_name'], $upload_path.$filename)){
     $sql="SELECT * FROM border WHERE id = ".$id;
     $resultset = $conn->query($sql);
     $row = $resultset->fetch_assoc();
-    $existingfile = $row['image'];
+    $existingfile = $row['uploadfile'];
   if(isset($existingfile) && $existingfile != ""){
     // unlink function remove previous file
     unlink($upload_path.$existingfile);
   }
   
-  $stmt = $conn->prepare("UPDATE border SET title = ?, contents = ?, image = ? WHERE id = ?" );
-  $stmt->bind_param("ssss", $title, $contents, $image, $id);
+  $stmt = $conn->prepare("UPDATE border SET title = ?, contents = ?, uploadfile = ? WHERE id = ?" );
+  //$stmt->bind_param("ssss", $title, $contents, $uploadfile, $id); 오타주의,  $filename = $_FILES['uploadfile']['name']; 을 사용
+  $stmt->bind_param("ssss", $title, $contents, $filename, $id);
   $stmt->execute();
 
   $conn->close();
@@ -54,4 +55,9 @@
   문제 :
   이미지 수정 시, border/uploadfiles 폴더에 이미지는 들어가나 
   db에서 있던 이미지 삭제되면서 새로운 이미지는 안들어가지고 -> 웹페이지에는 바뀌지 않고 '이미지가 없습니다'로 뜸
+
+  1. $stmt->bind_param("ssss", $title, $contents, $filename, $id); $filename = $_FILES['uploadfile']['name']; 을 사용해야 함
+  2. tbl col을 image라는 keyword 사용
+
+
 -->

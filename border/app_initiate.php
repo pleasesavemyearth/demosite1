@@ -29,7 +29,7 @@ $sql = "CREATE TABLE `border` (
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      `hit` INT(6) NOT NULL COMMENT 'hit' ,
      `thumbup` INT(10) NOT NULL COMMENT 'thumb up' ,
-     `image` VARCHAR(100) NOT NULL COMMENT 'attached file name',
+     `uploadfile` VARCHAR(100) NOT NULL COMMENT 'attached file name',
      PRIMARY KEY(`id`) 
      )
      ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'border registration table';";

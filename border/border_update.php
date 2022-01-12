@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
   $regtime = $row['regtime'];
   $lasttime = $row['lasttime'];
   //파일 업로드 가져오기
-  $image = $row['image'];
+  $uploadfile = $row['uploadfile'];
 } else {
   echo outmsg(INVALID_MEMOID);
 }
@@ -51,9 +51,9 @@ if ($result->num_rows > 0) {
       <label>내용</label><input type="text" name="contents" value="<?=$contents?>"><br>
       <label>작성일</label><input type="text" name="regtime" value="<?=$regtime?>" readonly><br>
       <label>수정일</label><input type="text" name="lasttime" value="<?=$lasttime?>" readonly><br>
-      <label>첨부파일</label><input type="file" name="image" value="<?=$image?>"/><br>
+      <label>첨부파일</label><input type="file" name="uploadfile" value="<?=$uploadfile?>"/><br>
        <!-- 경로명과 파일명 결합해서 뿌려준다. -->
-       <p><img src="<?=$upload_path.$image?>" width="200px" height="auto" ><br>
+       <p><img src="<?=$upload_path.$uploadfile?>" width="200px" height="auto" ><br>
       <input type="submit" value="수정">
       <input type="button" value="목록" onclick="location.href='./border_detailview.php?id=<?=$id?>'"/>
     </form>

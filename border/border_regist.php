@@ -32,7 +32,7 @@ if($chk_login) {
     내용<br>
     <input type="text" name="contents" required/><br>
 
-    <input type="file" name="image" /><br><br>
+    <input type="file" name="uploadfile" /><br><br>
 
     <input type="submit" value="등록"/>
     <input type="reset"/> 

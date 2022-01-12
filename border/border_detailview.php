@@ -65,7 +65,7 @@ if($chk_login){
                     <td><?=$row['hit']?></td>
                     <td><?=$row['thumbup']?></td>
                     <!-- 첨부된 이미지 파일의 이름을 경로명과 함께 출력 -->
-                    <td><img src='<?= $upload_path.$row['image'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
+                    <td><img src='<?= $upload_path.$row['uploadfile'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
                 </tr>
       </table> 
 
