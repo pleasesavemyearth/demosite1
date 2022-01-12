@@ -4,12 +4,20 @@
   box-sizing: border-box;
 }
 
+
 /* pagination 꾸미기 */
 /* pagination 이나 ul 이나 li에 적용되는 차이점 : border넣어서 확인 */
 /* Pagination anchor tag */
 .pagination a {
   padding: 5px 10px;
   transition: background-color .5s;
+}
+
+/* 게시판 목록 */
+.board_area {
+	width: 900px;
+	position: relative;
+
 }
 
 /* pagination list item */
