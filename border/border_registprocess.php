@@ -23,13 +23,19 @@ $title = $_POST['title'];
 $contents = $_POST['contents'];
 
 // img를 db에 등록을 위해 추가===========================
+// $_FILES 는 파일처리를 위한 전역변수
+// $_FILES['input name']['임시파일이름']
+
+// 업로드한 파일 이름을 가져옴
 if(is_uploaded_file($_FILES['image']['tmp_name'])){
+  // 파일명 중복 회피 위해 timestamp를 붙여 유일하게 처리
   $filename = time()."_".$_FILES['image']['name'];
 
-  if(move_uploaded_file($_FILES['uploadfile']['tmp_name'], $upload_path.$filename)){
+  // 처리 결과 메세지 추가
+  if(move_uploaded_file($_FILES['image']['tmp_name'], $upload_path.$filename)){
     if(DBG) echo outmsg(UPLOAD_SUCCESS);
-    $stmt = $conn->prepare("INSERT INTO border(username, title, contents, uploadfile) VALUES(?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $username, $title, $contents, $filename);
+    $stmt = $conn->prepare("INSERT INTO border(username, title, contents, image) VALUES(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $username, $title, $contents, $filename); //$filename어디서
 } else {
   if(DBG) echo outmsg(UPLOAD_ERROR);   
   }

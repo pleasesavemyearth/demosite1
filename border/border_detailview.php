@@ -28,6 +28,9 @@ if($chk_login){
     <h1>게시판 글 보기</h1><br>
 
     <?php
+    // 파일 저장 경로
+     $upload_path = './uploadfiles/';
+
      $id = $_GET['id'];
 
      $sql = "SELECT * FROM border WHERE id= ".$id; 
@@ -38,7 +41,8 @@ if($chk_login){
      $conn -> query($hit);
 
      if($resultset->num_rows > 0) {
-        echo "<table>
+        echo "<table>";
+      ?>
               <tr>
                 <th>번호</th>
                 <th>제목</th>
@@ -48,34 +52,39 @@ if($chk_login){
                 <th>수정일</th>
                 <th>조회수</th>
                 <th>추천수</th>
-              </tr>";
-        $row = $resultset->fetch_assoc();
-            echo "<tr>
-                    <td>".$row['id']."</td>
-                    <td>".$row['title']."</td>
-                    <td>".$row['contents']."</td>
-                    <td>".$row['username']."</td>
-                    <td>".$row['regtime']."</td>
-                    <td>".$row['lasttime']."</td>
-                    <td>".$row['hit']."</td>
-                    <td>".$row['thumbup']."</td>
-                  </tr>";
-            echo "</table>";
-    }
-    
-  // db에 등록된 img 글읽기 시 나타내기
-    // if(!$row['image']) {
-          
-    // } else{
-    //   echo "<img src='image/$row[image]'></img>"; 
-    // }  
-?>
+                <th>첨부파일</th>
+                <th>첨부파일2</th>
+              </tr>
+              <?php $row=$resultset->fetch_assoc();?>
+                <tr>
+                    <td><?=$row['id']?></td>
+                    <td><?=$row['title']?></td>
+                    <td><?=$row['contents']?></td>
+                    <td><?=$row['username']?></td>
+                    <td><?=$row['regtime']?></td>
+                    <td><?=$row['lasttime']?></td>
+                    <td><?=$row['hit']?></td>
+                    <td><?$row['thumbup']?></td>
+                    <td><img src='<?= $upload_path.$row['image'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
+                    <td>
+                      <?php
+                      if($upload_path = null) {
+
+                       } else { ?>
+                        <img src='<?= $upload_path.$row['image'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'>
+                      <?php } ?>
+                      
+                    </td>
+                </tr>
+      </table> 
 
     <br>
     <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>
     <input type="button" value="삭제" onclick="location.href='./border_deleteprocess.php?id=<?=$row['id']?>'"/>
     <input type="button" value="목록" onclick="location.href='./border_list.php'"/>
-
+  <?php
+     }
+    ?>
 </body>
 <?php
 } else {
@@ -85,6 +94,8 @@ if($chk_login){
 ?>
 </html>
 
-<!--
-  db에 등록된 img 글읽기 시 나타내도록 수정
+<!-- 
+  첨부파일2 :
+  첨부파일을 추가했다면(이 조건을 어떻게?), 사진이 뜨고
+  그렇지 않으면 공백으로 둔다
 -->
