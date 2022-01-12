@@ -25,7 +25,7 @@ if($chk_login) {
     <title>Document</title>
 </head>
 <body>
-    <form action ="./border_registprocess.php" method="POST">
+    <form action ="./border_registprocess.php" method="POST" enctype="multipart/form-data">
     <h1>글쓰기</h1> 
     <input hidden type="text" name="username" value="<?=$username?>" />
     제목<input type="text" name="title" required/><br>
@@ -52,4 +52,6 @@ if($chk_login) {
   1. type이 file인 input태그 추가
   2. db에서 image라는 column 추가(data type: varchar(100))
   3. 
+
+  enctype="multipart/form-data" : post방식에서 데이터를 전송하는 용량보다 더 큰 용량을 전송할 수 있게 함
 -->

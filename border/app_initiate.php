@@ -28,7 +28,8 @@ $sql = "CREATE TABLE `border` (
      `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      `hit` INT(10) NOT NULL COMMENT 'hit' ,
-     `thumbup` INT(10) NOT NULL COMMENT 'thumb up' ,
+     `thumbup` INT(10) NOT NULL COMMENT 'thumb up' 
+     `image` VARCHAR(50) NOT NULL COMMENT 'image',
      PRIMARY KEY(`id`) 
      )
      ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'memo registration table';";

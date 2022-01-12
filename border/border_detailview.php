@@ -63,13 +63,13 @@ if($chk_login){
             echo "</table>";
     }
     
-    // db에 등록된 img 글읽기 시 나타내기
+  // db에 등록된 img 글읽기 시 나타내기
     // if(!$row['image']) {
-
+          
     // } else{
     //   echo "<img src='image/$row[image]'></img>"; 
-    // }
-    // ?>
+    // }  
+?>
 
     <br>
     <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>

@@ -91,4 +91,8 @@ function get_client_ip() {
 
 // 게시글 번호가 잘못되었음을 출력
 const INVALID_MEMOID = '게시글 번호가 잘못되었습니다.';
+
+// 사진 업로드 성공 및 실패 시
+const UPLOAD_SUCCESS = '파일 첨부를 성공했습니다.';
+const UPLOAD_ERROR = '파일 첨부를 실패하였습니다.';
 ?>

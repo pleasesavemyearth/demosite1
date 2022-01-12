@@ -11,6 +11,7 @@
 <?php
 require '../util/dbconfig.php';
 require_once '../util/loginchk.php';
+
 if($chk_login) {
     $username = $_SESSION['username'];
 ?>
@@ -22,7 +23,7 @@ if($chk_login) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <link rel="stylesheet" href="../css/style.css">
-    <title>게시판 글 목록</title>
+    <title>게시글 검색</title>
 </head>
 <body>
     <h6><?=$username?>님이 로그인하셨습니다.</h6>
@@ -52,9 +53,8 @@ if($chk_login) {
                 //     $keyword = '글쓴이';
                 // }
 
-                // 2. 검색된 리스트 갯수값 (수정)
-                $sql = "SELECT * FROM border WHERE $category LIKE '%$search%' ORDER BY id DESC";
-                $total_records_per_page = ($sql);
+                // 2. 검색된 리스트 갯수값
+                $total_records_per_page = 3;
 
                 // 3. offset계산, 이전/다음페이지 변수 설정
                 $offset = ($page_no - 1) * $total_records_per_page;
@@ -62,7 +62,8 @@ if($chk_login) {
                 $next_page = $page_no + 1;
 
                 // 4. 전체 페이지 수 계산
-                $sql = "SELECT COUNT(*) AS total_records FROM border";
+                //$sql = "SELECT COUNT(*) AS total_records FROM border"; 이걸로 하면 검색되어 나타나는 페이지의 갯수가 결과값이 없어도 10개씩 뜨게 됨
+                $sql = "SELECT COUNT(*) AS total_records FROM border WHERE $category LIKE '%$search%' ORDER BY id DESC";
                 $resultset = $conn->query($sql);
                 $result = mysqli_fetch_array($resultset);
                 $total_records = $result['total_records'];
@@ -113,16 +114,21 @@ if($chk_login) {
                   }
                   
                 // 현재 페이지가 1보다 클때
+                // if($page_no > 1){
+                //     echo "<li><a href='?page_no=1'>처음페이지</a></li>";
+                // }
+                // 검색결과시 page뿐만 아니라 category와 search값 가지고 와야 2페이지 이상부터도 보임
                 if($page_no > 1){
-                    echo "<li><a href='?page_no=1'>처음페이지</a></li>";
-                } ?>
+                    echo "<li><a href='?page_no=1&category=$category&search=$search'>처음페이지</a></li>";
+                } 
+                ?>
 
                 <!-- 현재 페이지가 1보다 작거나 같을때 -->
                 <li <?php if($page_no <= 1){
                     echo "class='disabled'";} ?>>
                 <!-- 현재 페이지가 1보다 클때 -->
                 <a <?php if($page_no > 1){
-                    echo "href='?page_no=$previous_page'";} ?>>이전페이지</a>
+                    echo "href='?page_no=$previous_page&category=$category&search=$search'";} ?>>이전페이지</a>
                 </li>
 
             <?php
@@ -133,9 +139,9 @@ if($chk_login) {
                 // for($counter = 1; $counter <= $total_no_of_pages; $counter++)
                 for($counter = $start_page; $counter <= $end_page; $counter++) {
                     if($counter == $page_no) {
-                        echo "<li class='active'><a>$counter</a></li>";
+                        echo "<li class='active'><a href='?page_no=$next_page&category=$category&search=$search'>$counter</a></li>";
                     } else {
-                        echo "<li><a href='?page_no=$counter'>$counter</a></li>";
+                        echo "<li><a href='?page_no=$counter&category=$category&search=$search'>$counter</a></li>";
                     }
                 }
             ?>
@@ -145,16 +151,16 @@ if($chk_login) {
                     echo "class='disabled'";} ?>>
                 <!-- 현재페이지가 총페이지보다 작으면 -->
                 <a <?php if($page_no < $total_no_of_pages){
-                    echo "href='?page_no=$next_page'";} ?>>다음페이지</a>
+                    echo "href='?page_no=$next_page&category=$category&search=$search'";} ?>>다음페이지</a>
                 </li>
                 
                 <?php if($page_no < $total_no_of_pages){
-                    echo "<li><a href='?page_no=$total_no_of_pages'>마지막페이지</a></li>";} 
+                    echo "<li><a href='?page_no=$total_no_of_pages&category=$category&search=$search'>마지막페이지</a></li>";} 
                 ?>
                 </ul>
 
                 <?php // 여기까지 pagination을 위해 추가 부분
-                //==============================================
+                //===========================================
             ?>
 </div>
         <br><br>

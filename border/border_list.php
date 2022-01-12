@@ -100,7 +100,8 @@ if($chk_login) {
                 // 현재 페이지가 1보다 클때
                 if($page_no > 1){
                     echo "<li><a href='?page_no=1'>처음페이지</a></li>";
-                } ?>
+                } 
+                ?>
 
                 <!-- 현재 페이지가 1보다 작거나 같을때 -->
                 <li <?php if($page_no <= 1){
@@ -147,7 +148,7 @@ if($chk_login) {
         <input type="button" value="홈으로" onclick="location.href='../index.php'"/> 
         <input type="button" value="로그아웃" onclick="location.href='../membership/user_logout.php'"/> 
 
-        <form action = "border_search.php" method = "GET">
+        <form action = "./border_search.php" method = "GET">
             <select name = "category">
                 <option value="title">제목</option>
                 <option value="contents">내용</option>

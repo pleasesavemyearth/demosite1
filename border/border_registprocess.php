@@ -12,38 +12,54 @@
 require "../util/dbconfig.php";
 require_once "../util/loginchk.php";
 
+//border앱 폴더 아래 uploadfiles라는 폴더 생성후 진행함
+$upload_path = './uploadfiles/';
+
 if($chk_login){
 
-// 메모 작성 화면으로 부터 값을 전달 받음
+// 글 작성 화면으로 부터 값을 전달 받음
 $username = $_SESSION['username'];
 $title = $_POST['title'];
 $contents = $_POST['contents'];
 
-// img db에 등록을 위해 추가
-// if($_FILES['image']['name']){
-//   $imageFullName = strtolower($_FILES['image']['name']);
-//   $imageNameSlice = explode(".",$imageFullName);
-//   $imageName = $imageNameSlice[0];
-//   $imageType = $imageNameSlice[1];
-//   $image_ext = array('jpg','jpeg','gif','png');
-//   if(array_search($imageType,$image_ext) === false){
-//       errMsg('jpg, jpeg, gif, png 확장자만 가능합니다.');
-//   }
-//   $dates = date("mdhis",time());
-//   $newImage = chr(rand(97,122)).chr(rand(97,122)).$dates.rand(1,9).".".$imageType;
-//   $dir = "image/";
-//   move_uploaded_file($_FILES['image']['tmp_name'],$dir.$newImage);
-//   chmod($dir.$newImage,0777);
-// }
+// img를 db에 등록을 위해 추가===========================
+if(is_uploaded_file($_FILES['image']['tmp_name'])){
+  $filename = time()."_".$_FILES['image']['name'];
+
+  if(move_uploaded_file($_FILES['uploadfile']['tmp_name'], $upload_path.$filename)){
+    if(DBG) echo outmsg(UPLOAD_SUCCESS);
+    $stmt = $conn->prepare("INSERT INTO border(username, title, contents, uploadfile) VALUES(?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $username, $title, $contents, $filename);
+} else {
+  if(DBG) echo outmsg(UPLOAD_ERROR);   
+  }
+}else {// file을 첨부하지 않은 기존 추가구문이라면 
+  $stmt = $conn->prepare("INSERT INTO border(username, title, contents) VALUES(?, ?, ?)");
+  $stmt->bind_param("sss", $username, $title, $contents);
+} 
+
+// tmpfile변수에 $_FILES함수로 post로 받아온 파일(image)를 가져오고 ['tmp_name']으로 임시파일명으로 바꿈
+// $tmpfile = $_FILES['image']['tmp_name'];
+// o_name변수에 $_FILES['image']['name']으로 원래 파일명을 넣음
+// $o_name = $_FILES['image']['name'];
+// 한글파일깨짐을 방지하기 위해 iconv 사용
+// iconv([입력 캐릭터셋], [변환하고자하는 캐릭터셋], [문자열]);
+// $filename = iconv("UTF-8", "EUC-KR",$_FILES['image']['name']);
+// 업로드한 파일이 이동될 수 잇게 폴더 경로를 지정하고 filename변수로 업로드 파일 이름을 가져옴
+// $folder = "../upload".$filename;
+// tmpfile를 가져와 업로드된 파일이 사용자 지정 디렉토리로 이동
+// move_uploaded_file($tmpfile, $folder);
+
 
 // db에 삽입 
 // $stmt = $conn->prepare("INSERT INTO border (username, title, contents, image) VALUES (?, ?, ?, ?)");  
 // $stmt->bind_param("ssss", $username, $title, $contents, $image);
-$stmt = $conn->prepare("INSERT INTO border (username, title, contents) VALUES (?, ?, ?)");  
-$stmt->bind_param("sss", $username, $title, $contents);
+// $stmt = $conn->prepare("INSERT INTO border (username, title, contents) VALUES (?, ?, ?)");  
+// $stmt->bind_param("sss", $username, $title, $contents);
 $stmt->execute();
 
 // db 연결 리소스 반납
+$stmt->close();
 $conn->close();
 
 echo outmsg(COMMIT_CODE);
