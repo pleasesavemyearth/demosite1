@@ -39,7 +39,7 @@ if($chk_login) {
                 }
 
                 // 2. 페이지 당 보여줄 리스트 갯수값 설정
-                $total_records_per_page = 5;
+                $total_records_per_page = 10;
 
                 // 3. offset계산, 이전/다음페이지 변수 설정
                 $offset = ($page_no - 1) * $total_records_per_page;

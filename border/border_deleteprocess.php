@@ -10,10 +10,23 @@
 
 <?php 
 require '../util/dbconfig.php';
+require_once '../util/loginchk.php';
+
+if($chk_login){
 
 $id = $_GET['id'];
 
+$upload_path = './uploadfiles/';
+
 $sql = "DELETE FROM border WHERE id=" .$id;
+$resultset = $conn->query($sql);
+$row = $resultset->fetch_assoc();
+$existingfile = $row['uploadfile'];
+if(isset($existingfile) && $existingfile != ""){
+  unlink($upload_path.$existingfile); // unlink function remove existing file
+}
+
+$sql = "DELETE FROM border WHERE id=" . $id;
 if ($conn->query($sql) == TRUE) {
     echo outmsg(DELETE_SUCCESS);
   } else {
@@ -23,5 +36,5 @@ if ($conn->query($sql) == TRUE) {
 $conn->close();
 
 header('Location: ./border_list.php');
-
+}
 ?>

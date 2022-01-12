@@ -43,9 +43,9 @@
 }
 
 /* pagination 클릭 시 색상이 유지되도록 */
-.pagination a:active {
-  /* color: red; */
-}
+/* .pagination a:active {
+  color: red;
+} */
 
 /* title hover시, underline이 나타나도록 */
 .board_area a {

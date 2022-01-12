@@ -53,7 +53,6 @@ if($chk_login){
                 <th>조회수</th>
                 <th>추천수</th>
                 <th>첨부파일</th>
-                <th>첨부파일2</th>
               </tr>
               <?php $row=$resultset->fetch_assoc();?>
                 <tr>
@@ -64,17 +63,9 @@ if($chk_login){
                     <td><?=$row['regtime']?></td>
                     <td><?=$row['lasttime']?></td>
                     <td><?=$row['hit']?></td>
-                    <td><?$row['thumbup']?></td>
+                    <td><?=$row['thumbup']?></td>
+                    <!-- 첨부된 이미지 파일의 이름을 경로명과 함께 출력 -->
                     <td><img src='<?= $upload_path.$row['image'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
-                    <td>
-                      <?php
-                      if($upload_path = null) {
-
-                       } else { ?>
-                        <img src='<?= $upload_path.$row['image'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'>
-                      <?php } ?>
-                      
-                    </td>
                 </tr>
       </table> 
 

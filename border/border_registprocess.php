@@ -35,7 +35,7 @@ if(is_uploaded_file($_FILES['image']['tmp_name'])){
   if(move_uploaded_file($_FILES['image']['tmp_name'], $upload_path.$filename)){
     if(DBG) echo outmsg(UPLOAD_SUCCESS);
     $stmt = $conn->prepare("INSERT INTO border(username, title, contents, image) VALUES(?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $username, $title, $contents, $filename); //$filename어디서
+    $stmt->bind_param("ssss", $username, $title, $contents, $filename); 
 } else {
   if(DBG) echo outmsg(UPLOAD_ERROR);   
   }

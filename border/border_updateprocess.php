@@ -21,7 +21,7 @@
     $contents = $_POST['contents'];
     $regtime = $_POST['regtime'];
 
-  // filename변수에 
+  // filename변수에 $_FILES함수로 post로 받아온 파일(image)를 가져오고 ['name']으로 파일명 바꿈
   $filename = $_FILES['image']['name'];
   // 파일 중복 회피
   $filename = time()."_".$_FILES['image']['name'];
@@ -49,6 +49,9 @@
   echo "<a href='../index.php'>Confirm and Return to index.</a>";
 }
 ?>
+
 <!-- 
-  이미지 수정이 안됨 뭐가 문제 . .?
+  문제 :
+  이미지 수정 시, border/uploadfiles 폴더에 이미지는 들어가나 
+  db에서 있던 이미지 삭제되면서 새로운 이미지는 안들어가지고 -> 웹페이지에는 바뀌지 않고 '이미지가 없습니다'로 뜸
 -->
