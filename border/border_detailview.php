@@ -11,6 +11,7 @@
 <?php
 require "../util/dbconfig.php";
 require_once "../util/loginchk.php";
+
 if($chk_login){
   $username = $_SESSION['username'];
 ?>
@@ -43,6 +44,7 @@ if($chk_login){
      if($resultset->num_rows > 0) {
         echo "<table>";
       ?>
+      <!-- 글 정보 -->
               <tr>
                 <th>번호</th>
                 <th>제목</th>
@@ -73,20 +75,85 @@ if($chk_login){
     <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>
     <input type="button" value="삭제" onclick="location.href='./border_deleteprocess.php?id=<?=$row['id']?>'"/>
     <input type="button" value="목록" onclick="location.href='./border_list.php'"/>
+    <br><br>
+
+      <!-- 댓글 목록 -->
+      <p3>댓글 목록</p3>
+      <?php
+           $sql = "SELECT * FROM reply WHERE col_num= ".$id; 
+           $resultset = $conn -> query($sql);
+
+           while($row=$resultset->fetch_assoc()) { // 1번 while문
+            echo "<table>";
+      ?>
+          <tr>
+            <th>작성자</th>
+            <th>내용</th>
+            <th>작성일</th>
+          </tr>
+     
+          <tr>
+            <td><?=$row['username']?></td>
+            <td><?=$row['contents']?></td>
+            <td><?=$row['regtime']?></td>
+          </tr>
+      </table>
+
+        <!-- 댓글 수정/삭제 버튼 -->
+        <input type="button" value="수정" onclick="location.href='../reply/reply_updateprocess.php?id=<?=$id?>'"/>
+        <a href="../reply/reply_deleteprocess.php?id=<?=$id?>&col_num=<?=$col_num?>">삭제</a>
+    <?php
+     } // 댓글 목록 if문 닫음 
+    ?>
+
+      <!-- 댓글 수정 -->
+      <form action="../reply/reply_updateprocess.php" method="post"> 
+      <input type ="text" hidden name="col_num" value="<?=$id?>">
+      <textarea name="contents" cols="100" rows="5"></textarea>
+      <input type="submit" value="수정" />
+     </form>
+
+      <!-- 댓글 등록 -->
+      <br>
+      <p3>댓글 쓰기</p3>
+      <form action="../reply/reply_registprocess.php" method="post"> <!-- 2번 post방식 -->
+      <input type ="text" hidden name="col_num" value="<?=$id?>">
+      <textarea name="contents" cols="100" rows="5"></textarea>
+      <input type="submit" value="등록" />
+     </form>
+
   <?php
-     }
+     } // 글 정보 if문 닫음
     ?>
 </body>
+
 <?php
 } else {
   echo outmsg(LOGIN_NEED);
   echo "<a href='../index.php'>인덱스페이지로</a>";
 }
 ?>
+
 </html>
 
 <!-- 
-  첨부파일2 :
-  첨부파일을 추가했다면(이 조건을 어떻게?), 사진이 뜨고
-  그렇지 않으면 공백으로 둔다
+     
+    문제 : 댓글 등록이 안됨 (1번 게시글에 등록했을 때, reply tbl에서 col_num = 1 이 되야 함)
+    해결 :
+    1. 댓글 등록하는 부분이 while문이 되어야 함 
+    -> 왜냐하면, 게시글은 한 번만 올리기 때문에 반복이 한번만 돌면 되어서 if문을 사용하는데
+    댓글은 한 게시글에 여러 id가 달릴 수 있기 때문에 while을 사용해야 한다
+    그래서 while($row=$resultset->fetch_assoc()) 로 수정함
+    2. post방식으로 값을 넘겨주는데 input type 을 통해 id를 hidden으로 넘겨줘야 함
+    -> 왜냐하면, 그 이유는 까먹음
+    
+    !!!get으로 하려면 <a href='?page_no=$counter&category=$category&search=$search'>$counter</a> 
+    이런식으로 category와 search 넘기는 값 명시되있어야 함
+    그런데 왜 삭제 버튼이 눌러도 활성을 안해 ?
+
+    해결해야 함 :
+    1. <p3>댓글 쓰기</p3> 왜 ?
+    2. 첨부파일을 추가했다면(이 조건을 어떻게?), 사진이 뜨고
+       그렇지 않으면 공백으로 둔다
+    3. 수정 클릭 시, 수정 폼이 뜨도록 js로 처리해야 함
 -->

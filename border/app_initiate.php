@@ -57,7 +57,7 @@ if(DBG){
 $conn->close();
 
 // 프로세스 플로우를 인덱스 페이지로 돌려준다.
-echo "<a href='../index.php'>border 테이블을 생성했습니다. 클릭하면 index 페이지로 이동합니다.</a>";
+echo "<a href='../reply/app_initiate.php'>border 테이블을 생성했습니다. 클릭하면 reply 테이블을 생성합니다.</a>";
 ?>
 
 <!-- 

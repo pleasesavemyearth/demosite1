@@ -97,5 +97,5 @@ if (DBG) echo outmsg(COMMIT_CODE);
 // header('Location: index.php');
 // 작업 실행 단계별 메시지 확인을 위해 Confrim and return to back하도록 수정함!!
 // 백그라운드로 처리되도록 할 경우 위의 원 코드로 대체 할 것!!
-echo "<a href='../membership/app_initiate.php'>사용자계정과 demosite1 DB를 생성했습니다. 클릭하면 membership 테이블을 생성합니다.</a>";
+echo "<a href='../membership/app_initiate.php'>사용자계정과 demosite1 DB를 생성했습니다. 클릭하면 membership(users) 테이블을 생성합니다.</a>";
 ?>

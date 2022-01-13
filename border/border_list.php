@@ -60,6 +60,7 @@ if($chk_login) {
                 $sql = "SELECT * FROM border LIMIT ".$offset.",".$total_records_per_page;
                 $resultset = $conn -> query($sql);
 
+
                 if($resultset->num_rows > 0) {
                     echo "<table>
                           <tr>
@@ -81,8 +82,14 @@ if($chk_login) {
                               </tr>";
                     }
                     echo "</table>";
+
+                    // 댓글 수 카운트
+                    // $sql = "SELECT * FROM reply WHERE col_num".$row['id'];
+                    // $resultset = $conn -> query($sql);
+                    // $rep_count = mysqli_num_rows($resultset);
                 }
                 //paginatino을 위해 추가하는 부분================
+        
             ?>
 
             <ul class="pagination">
@@ -157,7 +164,7 @@ if($chk_login) {
             <input type = "text" name = "search" required />
             <button>검색</button>
         </form>
-
+    
 </body>
 <?php
 } else { // 로그인을 하지 않았을 시
