@@ -15,12 +15,7 @@ $id = $_GET['id']; // 댓글 id
 $col_num = $_GET['col_num']; // 게시글 id
 
 
-// $sql = "SELECT * FROM reply WHERE id=".$id;
-// // 댓글 id 받아오기 실행 질의문
-
-// $sql = "SELECT * FROM border WHERE id=".$id;
-
-
+// 삭제
 $sql = "DELETE FROM reply WHERE id=".$id;
 if ($conn->query($sql) == TRUE) {
     echo outmsg(DELETE_SUCCESS);
@@ -28,16 +23,12 @@ if ($conn->query($sql) == TRUE) {
     echo outmsg(DELETE_FAIL);
   }
 
+// border tbl 에러남
+$sql = "UPDATE border SET b_reply = b_reply - 1 WHERE id=".$col_num;
+$conn->query($sql);
+
 $conn->close();
 
 header('Location: ../border/border_detailview.php');
 
 ?>
-
-<!--
-    해당 col_num의 해당 댓글의 id에 해당하는 댓글을 찾아서 삭제한다
-    항상 생각해야 한다
-    1. detailview에서 삭제버튼 주소에 id와 col_num 값을 적어야
-    이동한 페이지인 deleteprocess에서도 id와 col_num을 받아올 수 있고
-    2. col_num도 받아오는 이유 까먹음
--->

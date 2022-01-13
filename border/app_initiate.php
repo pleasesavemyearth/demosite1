@@ -30,6 +30,7 @@ $sql = "CREATE TABLE `border` (
      `hit` INT(6) NOT NULL COMMENT 'hit' ,
      `thumbup` INT(10) NOT NULL COMMENT 'thumb up' ,
      `uploadfile` VARCHAR(100) NOT NULL COMMENT 'attached file name',
+     `b_reply` INT(10) NOT NULL COMMENT 'board reply',
      PRIMARY KEY(`id`) 
      )
      ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'border registration table';";

@@ -22,123 +22,110 @@ if($chk_login){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>게시판 글 상세보기</title>
 </head>
 <body>
     <h6><?=$username?>님이 로그인하셨습니다.</h6>
     <h1>게시판 글 보기</h1><br>
-
     <?php
-    // 파일 저장 경로
-     $upload_path = './uploadfiles/';
-
      $id = $_GET['id'];
+     $col_num = $_GET['col_num']; // warning 생김 
+     $upload_path = './uploadfiles/'; // 파일 저장 경로
 
      $sql = "SELECT * FROM border WHERE id= ".$id; 
-     $resultset = $conn -> query($sql);
+     $resultset=$conn->query($sql);
 
-     /* hit update */
+     // hit update 
      $hit = "UPDATE border SET hit = hit+1 WHERE id=".$id;
-     $conn -> query($hit);
-
+     $conn->query($hit);
+     
      if($resultset->num_rows > 0) {
-        echo "<table>";
-      ?>
-      <!-- 글 정보 -->
-              <tr>
-                <th>번호</th>
-                <th>제목</th>
-                <th>내용</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>수정일</th>
-                <th>조회수</th>
-                <th>추천수</th>
-                <th>첨부파일</th>
-              </tr>
-              <?php $row=$resultset->fetch_assoc();?>
-                <tr>
-                    <td><?=$row['id']?></td>
-                    <td><?=$row['title']?></td>
-                    <td><?=$row['contents']?></td>
-                    <td><?=$row['username']?></td>
-                    <td><?=$row['regtime']?></td>
-                    <td><?=$row['lasttime']?></td>
-                    <td><?=$row['hit']?></td>
-                    <td><?=$row['thumbup']?></td>
-                    <!-- 첨부된 이미지 파일의 이름을 경로명과 함께 출력 -->
-                    <td><img src='<?= $upload_path.$row['uploadfile'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
-                </tr>
-      </table> 
-
-    <br>
-    <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>
-    <input type="button" value="삭제" onclick="location.href='./border_deleteprocess.php?id=<?=$row['id']?>'"/>
-    <input type="button" value="목록" onclick="location.href='./border_list.php'"/>
-    <br><br>
-
+      echo "<table>";
+    ?>
+    <!-- 글 상세보기 -->
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>내용</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>수정일</th>
+        <th>조회수</th>
+        <th>추천수</th>
+        <th>첨부파일</th>
+      </tr>
+      <?php $row=$resultset->fetch_assoc();?>
+      <tr>
+        <td><?=$row['id']?></td>
+        <td><?=$row['title']?></td>
+        <td><?=$row['contents']?></td>
+        <td><?=$row['username']?></td>
+        <td><?=$row['regtime']?></td>
+        <td><?=$row['lasttime']?></td>
+        <td><?=$row['hit']?></td>
+        <td><?=$row['thumbup']?></td>
+        <td><img src='<?= $upload_path.$row['uploadfile'] ?>' alt='이미지가 없습니다.' width='200px' height='auto'></td>
+      </tr>
+    </table> 
+      <input type="button" value="수정" onclick="location.href='./border_update.php?id=<?=$id?>'"/>
+      <input type="button" value="삭제" onclick="location.href='./border_deleteprocess.php?id=<?=$id?>'"/>
+      <input type="button" value="목록" onclick="location.href='./border_list.php'"/>
+    <?php
+      } // 글 상세보기 if문 닫음
+    ?>
+    
       <!-- 댓글 목록 -->
-      <p3>댓글 목록</p3>
-      <?php
+        <br><p1>댓글 목록</p1>
+        <?php
            $sql = "SELECT * FROM reply WHERE col_num= ".$id; 
            $resultset = $conn -> query($sql);
 
            while($row=$resultset->fetch_assoc()) { // 1번 while문
             echo "<table>";
-      ?>
+        ?>
           <tr>
             <th>작성자</th>
             <th>내용</th>
             <th>작성일</th>
           </tr>
-     
           <tr>
             <td><?=$row['username']?></td>
             <td><?=$row['contents']?></td>
             <td><?=$row['regtime']?></td>
           </tr>
-      </table>
-
-        <!-- 댓글 수정/삭제 버튼 -->
-        <input type="button" value="수정" onclick="location.href='../reply/reply_updateprocess.php?id=<?=$id?>'"/>
-        <a href="../reply/reply_deleteprocess.php?id=<?=$id?>&col_num=<?=$col_num?>">삭제</a>
-    <?php
-     } // 댓글 목록 if문 닫음 
-    ?>
+        </table>
+          <input type="button" value="수정" onclick="location.href='../reply/reply_updateprocess.php?id=<?=$id?>'"/>
+          <input type="button" value="삭제" onclick="location.href='../reply/reply_deleteprocess.php?id=<?=$id?>&col_num=<?=$col_num?>'"/>
+        <?php
+          } // 댓글 목록 while문 닫음 
+        ?>
 
       <!-- 댓글 수정 -->
-      <form action="../reply/reply_updateprocess.php" method="post"> 
-      <input type ="text" hidden name="col_num" value="<?=$id?>">
-      <textarea name="contents" cols="100" rows="5"></textarea>
-      <input type="submit" value="수정" />
-     </form>
+        <form action="../reply/reply_updateprocess.php" method="post"> 
+          <input type ="text" hidden name="col_num" value="<?=$id?>">
+          <textarea name="contents" cols="100" rows="5"></textarea>
+          <input type="submit" value="수정" />
+        </form>
 
       <!-- 댓글 등록 -->
-      <br>
-      <p3>댓글 쓰기</p3>
-      <form action="../reply/reply_registprocess.php" method="post"> <!-- 2번 post방식 -->
-      <input type ="text" hidden name="col_num" value="<?=$id?>">
-      <textarea name="contents" cols="100" rows="5"></textarea>
-      <input type="submit" value="등록" />
-     </form>
-
-  <?php
-     } // 글 정보 if문 닫음
-    ?>
+        <p3>댓글 쓰기</p3>
+        <form action="../reply/reply_registprocess.php" method="post"> <!-- 2번 post방식 -->
+          <input type ="text" hidden name="col_num" value="<?=$id?>">
+          <textarea name="contents" cols="100" rows="5"></textarea>
+          <input type="submit" value="등록" />
+        </form>
+<!-- 글 정보 if 닫는 괄호 있던 자리-->
 </body>
-
 <?php
 } else {
   echo outmsg(LOGIN_NEED);
   echo "<a href='../index.php'>인덱스페이지로</a>";
 }
 ?>
-
 </html>
 
 <!-- 
-     
-    문제 : 댓글 등록이 안됨 (1번 게시글에 등록했을 때, reply tbl에서 col_num = 1 이 되야 함)
+    문제 1 : 댓글 등록이 안됨 (1번 게시글에 등록했을 때, reply tbl에서 col_num = 1 이 되야 함)
     해결 :
     1. 댓글 등록하는 부분이 while문이 되어야 함 
     -> 왜냐하면, 게시글은 한 번만 올리기 때문에 반복이 한번만 돌면 되어서 if문을 사용하는데
@@ -149,7 +136,12 @@ if($chk_login){
     
     !!!get으로 하려면 <a href='?page_no=$counter&category=$category&search=$search'>$counter</a> 
     이런식으로 category와 search 넘기는 값 명시되있어야 함
-    그런데 왜 삭제 버튼이 눌러도 활성을 안해 ?
+    그런데 왜 삭제 버튼이 눌러도 활성을 안해 ? 이 이유는 문제 2 로
+
+    ★★★ 문제 2 :
+    댓글 삭제 시, col_num이 안잡힌다 ->  $col_num = $_GET['col_num']; 추가하면 첫번째? 한개의 댓만 삭제되고
+    넘어가는 페이지에서 에러, deleteprocess update문 수정필요
+
 
     해결해야 함 :
     1. <p3>댓글 쓰기</p3> 왜 ?

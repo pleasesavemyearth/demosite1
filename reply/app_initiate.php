@@ -28,7 +28,7 @@ $sql = "CREATE TABLE `reply` (
      `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      PRIMARY KEY(`id`),
-     FOREIGN KEY (`col_num`) REFERENCES border(`id`)
+     FOREIGN KEY (`col_num`) REFERENCES `border`(`id`)
      )
      ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'reply registration table';";
 
