@@ -24,7 +24,7 @@ if ($conn->query($sql) == TRUE) {
   }
 
 // border tbl 에러남
-$sql = "UPDATE border SET b_reply = b_reply - 1 WHERE id=".$col_num;
+//$sql = "UPDATE border SET b_reply = b_reply - 1 WHERE id=".$col_num;
 $conn->query($sql);
 
 $conn->close();
