@@ -33,6 +33,7 @@ $sql = "CREATE TABLE `border` (
      PRIMARY KEY(`id`) 
      )
      ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'border registration table';";
+     
 
 // 위 질의를 실행하고 실행결과에 따라 성공/실패 메시지 출력
 if ($conn->query($sql) == TRUE) {
