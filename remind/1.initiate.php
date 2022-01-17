@@ -79,3 +79,9 @@ if($conn != null) {
 }
 
 ?>
+
+<!--
+    employee tbl이 있다면 삭제 -> 실행이 안되서 주석처리하고 create tbl을 시킴 -> tbl 생성은 됨
+    바로 drop tbl 주석 풀고 실행하면 tbl은 삭제되지만 create tbl은 안됨
+
+-->
