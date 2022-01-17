@@ -56,7 +56,7 @@ $conn->query($sql);
 
 // create tbl
 // 존재하는 테이블이 있으면 삭제
-$sql = "DROP TABLE IF EXISTS `employee`";
+$sql = "DROP TABLE IF EXISTS `employee`"; // 선택된 db가 없다
 $conn->query($sql);
 // 새로운 테이블 생성
 $sql = "CREATE TABLE IF NOT EXISTS `" .$dbname. "`.`employee` ( 
