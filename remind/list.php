@@ -38,13 +38,28 @@
     $next_page = $page_no + 1;
 
     // 전체 페이지 수 계산
+    // array, assoc 둘 다 한 행씩 가져옴. 차이점은 ?
+    // assoc 는 항목 하나하나 이름을, array 는 인덱스를
     $sql="SELECT COUNT(*) AS total_records FROM employee";
     $result=$conn->query($sql);
-    $row=$result->fetch_array();
-    // $total_records=$row
-    // array, assoc 둘 다 한 행씩 가져옴. 차이점은 ?
-    // assoc 는 항목 하나하나 이름을
-    // array 는 인덱스를
+    $row=$result->fetch_assoc();
+    $total_records=$row['total_records'];
+    $total_no_of_pages = ceil($total_records/$records_per_page); // 마지막페이지?
+
+    $page_range_size = 10; // 한 페이지에 표시할 페이지블럭 수
+    $start_page = floor($page_no/$page_range_size) * $page_range_size + 1; 
+    // 처음엔 1, 마지막엔 10이 나와야 하므로 1을 더함
+    // floor 란?
+    $end_page=$start_page+($page_range_size-1);
+
+    // 스타트가 31이면 엔드는 40, 실제 내용은 35까지 있음
+    // 이럴 때를 위해 허상의 페이지블럭들을 안보이게 함
+    if($end_page>$total_no_of_pages) {
+        $end_page=$total_no_of_pages;
+    }
+    
+    
+
 
     // tbl조회
     // $sql="SELECT * FROM employee";
@@ -75,10 +90,27 @@
     ?>
     </table>
     <?php
-    // 1,2,3...pagination 만들기
-    for($count=1;$count<=10;$count++) {
-        echo "<a href='list.php?page_no=".$count."'>".$count."</a>&nbsp&nbsp&nbsp";
+    echo "current page : $page_no / $total_no_of_pages<br>";
+
+    if($page_no>1) {
+        echo "<a href='list.php?page_no=1'>처음페이지</a>&nbsp&nbsp&nbsp;";
     }
+    if($page_no>1) {
+        echo "<a href='list.php?page_no=$previous_page'>이전페이지</a>&nbsp&nbsp&nbsp;";
+    } // 2페이지부터 넘어가면 보인다
+    
+    // 1,2,3...pagination 만들기
+    for($count=$start_page;$count<=$end_page;$count++) {
+        echo "<a href='list.php?page_no=".$count."'>".$count."</a>&nbsp&nbsp&nbsp;";
+    }
+
+    if($page_no<$total_no_of_pages) {
+        echo "<a href='list.php?page_no=$next_page'>다음페이지</a>&nbsp&nbsp&nbsp;";
+    } 
+    if($page_no<$total_no_of_pages) {
+        echo "<a href='list.php?page_no=$total_no_of_pages'>마지막페이지</a>&nbsp&nbsp&nbsp;";
+    }
+    
 
     ?>
     <br><a href="./insert.php">인사정보등록</a>
