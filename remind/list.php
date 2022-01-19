@@ -45,7 +45,7 @@
     $row=$result->fetch_assoc();
     $total_records=$row['total_records'];
     $total_no_of_pages = ceil($total_records/$records_per_page); // 마지막페이지?
-    $page_range_size = 10; // 한 페이지에 표시할 페이지블럭 수
+    $page_range_size = 5; // 한 페이지에 표시할 페이지블럭 수
 
     // 11, 12, 13 은 1이 될거다.
     // 매 페이지마다 11, 21, 31이 스타트페이지가 됨
@@ -58,7 +58,7 @@
     } else {
         $start_page = floor($page_no/$page_range_size) * $page_range_size + 1 - $page_range_size;
     }
-    // 또는 $startPage = floor(($page_no-1)/$pagination_range) * $pagination_range + 1;
+    // $startPage = floor(($page_no-1)/$pagination_range) * $pagination_range + 1;
 
     // $start_page = floor($page_no/$page_range_size) * $page_range_size + 1; 
     // 처음엔 1, 마지막엔 10이 나와야 하므로 1을 더함
