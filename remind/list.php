@@ -58,6 +58,7 @@
     } else {
         $start_page = floor($page_no/$page_range_size) * $page_range_size + 1 - $page_range_size;
     }
+    // 또는 $startPage = floor(($page_no-1)/$pagination_range) * $pagination_range + 1;
 
     // $start_page = floor($page_no/$page_range_size) * $page_range_size + 1; 
     // 처음엔 1, 마지막엔 10이 나와야 하므로 1을 더함
