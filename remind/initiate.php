@@ -76,6 +76,18 @@ $sql = "CREATE TABLE IF NOT EXISTS `" .$dbname. "`.`employee` (
         ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci";
 $conn->query($sql);
 
+// 모의 데이터 추가
+for($i=1;$i<=345;$i++) {
+  $emp_name = '관리자'.$i;
+  $emp_number = '사원번호test'.$i;
+  $stmt=$conn->prepare("INSERT INTO employee(emp_name, emp_number) VALUES (?, ?)");
+  $stmt->bind_param("ss", $emp_name, $emp_number);
+  $stmt->execute();
+}
+
+$stmt->close();
+$conn->close();
+
 // 리소스는 항상 반납해야 함
 // if($conn != null) { 
 //     $conn->close();
@@ -90,4 +102,7 @@ $conn->query($sql);
 
     해결 :
     db 오픈 명시적으로 지정해줌 ($sql = "use ".$dbname;)
+
+    --
+    속성의 이름은 항상 sql에 있는 date의 속성명과 항상 같아야 한다
 -->
