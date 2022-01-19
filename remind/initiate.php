@@ -54,9 +54,13 @@ $conn->query($sql);
 $sql = "GRANT ALL PRIVILEGES ON `" .$dbname. "`.* TO '" .$account. "'@'%'; "; // 여긴 ` ` 이거여야 함. 앞엔 $dbname, 뒤엔 $account
 $conn->query($sql);
 
+//★★★ db 오픈 명시적으로 (mysql에서 use remind; 한거와 같다)
+$sql = "use ".$dbname;
+$conn->query($sql);
+
 // create tbl
 // 존재하는 테이블이 있으면 삭제
-$sql = "DROP TABLE IF EXISTS `employee`"; // 선택된 db가 없다
+$sql = "DROP TABLE IF EXISTS `employee` "; // 선택된 db가 없다
 $conn->query($sql);
 // 새로운 테이블 생성
 $sql = "CREATE TABLE IF NOT EXISTS `" .$dbname. "`.`employee` ( 
@@ -73,15 +77,17 @@ $sql = "CREATE TABLE IF NOT EXISTS `" .$dbname. "`.`employee` (
 $conn->query($sql);
 
 // 리소스는 항상 반납해야 함
-if($conn != null) { 
-    $conn->close();
-    echo "<script>alert('DBMS와 연결을 종료합니다')</script>";
-}
-
+// if($conn != null) { 
+//     $conn->close();
+//     echo "<script>alert('DBMS와 연결을 종료합니다')</script>";
+// }
 ?>
 
 <!--
+    문제 :
     employee tbl이 있다면 삭제 -> 실행이 안되서 주석처리하고 create tbl을 시킴 -> tbl 생성은 됨
     바로 drop tbl 주석 풀고 실행하면 tbl은 삭제되지만 create tbl은 안됨
 
+    해결 :
+    db 오픈 명시적으로 지정해줌 ($sql = "use ".$dbname;)
 -->
