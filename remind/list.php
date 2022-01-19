@@ -45,9 +45,21 @@
     $row=$result->fetch_assoc();
     $total_records=$row['total_records'];
     $total_no_of_pages = ceil($total_records/$records_per_page); // 마지막페이지?
-
     $page_range_size = 10; // 한 페이지에 표시할 페이지블럭 수
-    $start_page = floor($page_no/$page_range_size) * $page_range_size + 1; 
+
+    // 11, 12, 13 은 1이 될거다.
+    // 매 페이지마다 11, 21, 31이 스타트페이지가 됨
+    /*
+    10, 20, 30..은 나눠가지고 하면 똑같은 사이즈니까 1or2or3이 나온다 그래서 floor를해도
+    밑으로 다운되는게 아니락 그 숫자유지가됨. 그래서 +1을 해서 10일때 11되게하고 20일때 21되게 함
+    */
+    if(($page_no % $page_range_size) != 0) {
+        $start_page = floor($page_no/$page_range_size) * $page_range_size + 1;
+    } else {
+        $start_page = floor($page_no/$page_range_size) * $page_range_size + 1 - $page_range_size;
+    }
+
+    // $start_page = floor($page_no/$page_range_size) * $page_range_size + 1; 
     // 처음엔 1, 마지막엔 10이 나와야 하므로 1을 더함
     // floor 란?
     $end_page=$start_page+($page_range_size-1);
