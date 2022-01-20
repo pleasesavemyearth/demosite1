@@ -45,7 +45,7 @@
     $row=$result->fetch_assoc();
     $total_records=$row['total_records'];
     $total_no_of_pages = ceil($total_records/$records_per_page); // 마지막페이지?
-    $page_range_size = 5; // 한 페이지에 표시할 페이지블럭 수
+    $page_range_size = 10; // 한 페이지에 표시할 페이지블럭 수
 
     // 11, 12, 13 은 1이 될거다.
     // 매 페이지마다 11, 21, 31이 스타트페이지가 됨
@@ -79,6 +79,9 @@
     $sql="SELECT * FROM employee LIMIT ".$offset.",".$records_per_page;
     $resultset=$conn->query($sql); // 실행한 쿼리를 $resultset에 받는다
 
+    // 댓글 카운트
+    // $sql="SELECT * FROM comment WHERE emp_id".$id;
+    // $cmt_count=$conn->query($sql);
     ?>
 
     <h1>인사정보 리스트</h1>
@@ -94,7 +97,7 @@
     ?>
         <tr>
            <td><?=$row['id']?></td> 
-           <td><a href="./detailview.php?id=<?=$row['id']?>"><?=$row['emp_name']?></a></td> <!-- get방식 -->
+           <td><a href="./detailview.php?id=<?=$row['id']?>"><?=$row['emp_name']?></a></td> <!--get방식-->
            <td><?=$row['emp_number']?></td>
            <td><?=$row['emp_deptcode']?></td>
         </tr>

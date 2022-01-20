@@ -85,6 +85,24 @@ for($i=1;$i<=345;$i++) {
   $stmt->execute();
 }
 
+$sql = "DROP TABLE IF EXISTS `comment` ";
+$conn->query($sql);
+
+// reply tbl 생성
+$sql = "CREATE TABLE IF NOT EXISTS `comment` (
+     `cmt_id` INT(6) NOT NULL AUTO_INCREMENT ,
+     `cmt_writer` VARCHAR(50) NOT NULL , 
+     `cmt_contents` VARCHAR(600) NOT NULL ,
+     `emp_id` INT(6) NOT NULL,
+     PRIMARY KEY(`cmt_id`),
+     FOREIGN KEY (`emp_id`) REFERENCES `employee`(`id`) ON DELETE CASCADE
+     )
+     ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci";
+$conn->query($sql);
+
+// cascade : 원글이 사라지면 원글에 달린 댓글도 삭제된다
+// `` 이거 빠져도 상관 없음, 명확하게 하기 위한 것임
+
 $stmt->close();
 $conn->close();
 
