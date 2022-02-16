@@ -103,11 +103,23 @@ if($chk_login){
         ?>
 
       <!-- 댓글 수정 -->
-        <form action="../reply/reply_updateprocess.php" method="post"> 
-          <input type ="text" hidden name="col_num" value="<?=$id?>">
-          <textarea name="contents" cols="100" rows="5"></textarea>
-          <input type="submit" value="수정" />
-        </form>
+      <!--
+        22-02-16
+        1. 댓글 목록 내에 수정 버튼을 클릭하면, 수정 폼이 떠야 한다
+        2. reply_update_process 처리
+       -->
+       <div id ="modal">
+         <div class="modal_content">
+            <form action="../reply/reply_updateprocess.php" method="post"> 
+              <input type ="text" hidden name="col_num" value="<?=$id?>">
+              <textarea name="contents" cols="100" rows="5"></textarea>
+
+              <div class="root" id="modal_open_btn">
+                <input type="submit" value="수정" />
+              </div>
+            </form>
+         </div>
+       </div>
 
       <!-- 댓글 등록 -->
         <p3>댓글 쓰기</p3>
@@ -117,16 +129,23 @@ if($chk_login){
           <input type="submit" value="등록" />
         </form>
 <!-- 글 정보 if 닫는 괄호 있던 자리-->
-</body>
+
 <?php
 } else {
   echo outmsg(LOGIN_NEED);
   echo "<a href='../index.php'>인덱스페이지로</a>";
 }
 ?>
+ <script src='../js/reply.js'></script>
+</body>
 </html>
 
 <!-- 
+  22-02-16
+  0. 댓글 수정
+  1. 사용자 admin이 작성한 글이나 댓글은 사용자 tiger가 삭제하거나 수정하지 못하게 해야 함
+
+--------------------------------
     문제 1 : 댓글 등록이 안됨 (1번 게시글에 등록했을 때, reply tbl에서 col_num = 1 이 되야 함)
     해결 :
     1. 댓글 등록하는 부분이 while문이 되어야 함 
