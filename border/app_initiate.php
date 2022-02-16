@@ -27,8 +27,8 @@ $sql = "CREATE TABLE `border` (
      `contents` TEXT NOT NULL COMMENT 'border contents' ,
      `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
-     `hit` INT(6) NOT NULL COMMENT 'hit' ,
-     `thumbup` INT(10) NOT NULL COMMENT 'thumb up' ,
+     `hit` INT(6) DEFAULT 0 COMMENT 'hit' , 
+     `thumbup` INT(10) DEFAULT 0 COMMENT 'thumb up' ,
      `uploadfile` VARCHAR(100) NOT NULL COMMENT 'attached file name',
      PRIMARY KEY(`id`) 
      )
