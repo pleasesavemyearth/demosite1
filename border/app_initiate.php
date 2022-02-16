@@ -29,10 +29,10 @@ $sql = "CREATE TABLE `border` (
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      `hit` INT(6) DEFAULT 0 COMMENT 'hit' , 
      `thumbup` INT(10) DEFAULT 0 COMMENT 'thumb up' ,
-     `uploadfile` VARCHAR(100) NOT NULL COMMENT 'attached file name',
+     `uploadfile` VARCHAR(100) COMMENT 'attached file name',
      PRIMARY KEY(`id`) 
      )
-     ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'border registration table';";
+     ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci;";
      
 
 // 위 질의를 실행하고 실행결과에 따라 성공/실패 메시지 출력
@@ -44,7 +44,7 @@ if ($conn->query($sql) == TRUE) {
 
 if(DBG){
   // 리스트 pagination을 위한 모의 데이터 추가
-  $rndnumber = rand(234, 789);  // 레코드의 갯수는 최소 234개에서 789개
+  $rndnumber = rand(5, 30);  // 레코드의 갯수는 최소 234개에서 789개
   for($count=1;$count<=$rndnumber;$count++) {
     $username = 'admin';
     $title = $count.'번 게시글 제목';

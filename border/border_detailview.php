@@ -81,6 +81,8 @@ if($chk_login){
            $resultset = $conn -> query($sql);
 
            while($row=$resultset->fetch_assoc()) { // 1번 while문
+            $rep_id=$row['id']; 
+            $col_num=$row['col_num']; 
             echo "<table>";
         ?>
           <tr>
@@ -94,8 +96,8 @@ if($chk_login){
             <td><?=$row['regtime']?></td>
           </tr>
         </table>
-          <input type="button" value="수정" onclick="location.href='../reply/reply_updateprocess.php?id=<?=$id?>'"/>
-          <input type="button" value="삭제" onclick="location.href='../reply/reply_deleteprocess.php?id=<?=$id?>&col_num=<?=$col_num?>'"/>
+          <input type="button" value="수정" onclick="location.href='../reply/reply_updateprocess.php?id=<?=$rep_id?>'"/>
+          <input type="button" value="삭제" onclick="location.href='../reply/reply_deleteprocess.php?id=<?=$rep_id?>&col_num=<?=$col_num?>'"/>
         <?php
           } // 댓글 목록 while문 닫음 
         ?>

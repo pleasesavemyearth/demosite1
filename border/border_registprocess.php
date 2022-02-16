@@ -15,6 +15,7 @@ require_once "../util/loginchk.php";
 //border앱 폴더 아래 uploadfiles라는 폴더 생성후 진행함
 $upload_path = './uploadfiles/';
 
+
 if($chk_login){
 
 // 글 작성 화면으로 부터 값을 전달 받음

@@ -28,9 +28,8 @@ $sql = "CREATE TABLE `reply` (
      `regtime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'registration time' ,
      `lasttime` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'last time' ,
      PRIMARY KEY(`id`),
-     FOREIGN KEY (`col_num`) REFERENCES `border`(`id`)
-     )
-     ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci COMMENT = 'reply registration table';";
+     FOREIGN KEY (`col_num`) REFERENCES `border`(`id`) ON DELETE CASCADE
+     ) ENGINE = InnoDB CHARSET=utf8 COLLATE utf8_general_ci";
 
 // 위 질의를 실행하고 실행결과에 따라 성공/실패 메시지 출력
 if ($conn->query($sql) == TRUE) {

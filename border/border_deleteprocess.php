@@ -38,3 +38,9 @@ $conn->close();
 header('Location: ./border_list.php');
 }
 ?>
+
+<!--
+  21-02-16
+  댓글 달린 글은 삭제가 안됨.
+  -> initiate에 foreign key에 ON DELETE CASCADE 추가
+-->

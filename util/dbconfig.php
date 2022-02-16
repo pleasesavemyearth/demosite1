@@ -32,10 +32,10 @@ $conn = new mysqli($dbservername, $dbusername, $dbpassword, $dbname);
 // 데이터베이스 연결 확인
 // 오류가 있으면 DBCONN_FAIL 메시지 출력 후 프로세스 종료
 // 그렇지 않으면 DBCONN_SUCCESS 메시지 출력 후 다음 단계 진행 
-if ($conn->connect_error) {
-  echo outmsg(DBCONN_FAIL);
-  die("연결실패 :".$conn->connect_error);
-} else {
-  if (DBG) echo outmsg(DBCONN_SUCCESS);
-}
+// if ($conn->connect_error) {
+//   echo outmsg(DBCONN_FAIL);
+//   die("연결실패 :".$conn->connect_error);
+// } else {
+//   if (DBG) echo outmsg(DBCONN_SUCCESS);
+// }
 ?>
