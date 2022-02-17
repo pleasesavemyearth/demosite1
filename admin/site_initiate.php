@@ -16,11 +16,11 @@
 // substr("/currentfolername",1)는  /를 제외한 currentfoldername을 얻는다.
 //=======================================================
 // $toyappname = substr(dirname($_SERVER['PHP_SELF']), 1);
-$toyappname = 'qkrwlgus0317';
+$toyappname = 'demosite1'; //aws시 - demosite1 / fileziler시 - qkrwlgus0317
 //========================================================
 $dbservername = 'localhost'; // 개발 및 테스트 환경에서는 localhost를 전제로 한다.
-$dbusername = 'qkrwlgus0317';  // 현재 DBMS에 root계정을 이용하여 접속한다.
-$dbpassword = 'a!nvoh03';  // 현재 DBMS root 계정의 패스워드를 적는다.
+$dbusername = $toyappname;  // 현재 DBMS에 root계정을 이용하여 접속한다. // aws시 - $toyappname /fileziler시 - qkrwlgus0317
+$dbpassword = '';  // 현재 DBMS root 계정의 패스워드를 적는다. //aws시 - ''; / fileziler시 - a!nvoh03
 $dbname = $toyappname; // toy project의 이름으로 db와 사용자를 생성하도록 한다.
 
 // 메시지, 유틸리티 함수 등을 정의한 util/utility.php을 include 한다.
