@@ -19,7 +19,7 @@
 $toyappname = 'demosite1'; //aws시 - demosite1 / fileziler시 - qkrwlgus0317
 //========================================================
 
-$dbservername = 'localhost'; // 개발 및 테스트 환경에서는 localhost를 전제로 한다.
+$dbservername = 'localhost'; // 개발 및 테스트 환경에서는 localhost를 전제로 한다.gg
 $dbusername = $toyappname;  // 애플리케이션용 계정을 toy app과 같은 이름으로 생성한다.
 $dbpassword = '';  // 애플리케이션용 계정의 패스워드도 같은 이름으로 생성한다. //aws시 - ''; / fileziler시 - a!nvoh03
 $dbname = $toyappname;      // 애플리케이션용 데이터베이서의 이름도 같은 이름으로 생성한다.
