@@ -16,12 +16,12 @@
 // substr("/currentfolername",1)  /를 제외한 currentfoldername을 얻는다.
 //=======================================================
 //$toyappname = substr(dirname($_SERVER['PHP_SELF']), 1);
-$toyappname = 'qkrwlgus0317';
+$toyappname = 'qkrwlgus0317'; //aws시 - demosite1
 //========================================================
 
 $dbservername = 'localhost'; // 개발 및 테스트 환경에서는 localhost를 전제로 한다.
 $dbusername = $toyappname;  // 애플리케이션용 계정을 toy app과 같은 이름으로 생성한다.
-$dbpassword = 'a!nvoh03';  // 애플리케이션용 계정의 패스워드도 같은 이름으로 생성한다.
+$dbpassword = 'a!nvoh03';  // 애플리케이션용 계정의 패스워드도 같은 이름으로 생성한다. //aws시 - '';
 $dbname = $toyappname;      // 애플리케이션용 데이터베이서의 이름도 같은 이름으로 생성한다.
 
 require_once "../util/utility.php"; // 애플리케이션 지원을 위한 각종 환경 변수 및 function 선언
